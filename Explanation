@@ -1,0 +1,29 @@
+Project Overview
+This To-Do List web application allows users to manage their daily tasks effectively. Users can add tasks with a specified due date and priority level (High, Medium, Low), mark tasks as completed, edit tasks, and delete tasks. Additionally, the application keeps track of the number of completed and uncompleted tasks.
+
+Project Structure
+HTML (index.html): Defines the structure of the web page.
+CSS (todolist.css): Styles the web page elements for better user experience.
+JavaScript (todolist.js): Contains the logic for managing tasks.
+
+HTML Explanation
+The HTML file sets up the layout and includes the following elements:
+Header: Displays the title of the To-Do List.
+Form: Includes input fields for adding a task, selecting a due date, and choosing a priority level.
+Task List Container: Contains the list of tasks added by the user.
+Counters: Displays the number of completed and uncompleted tasks.
+
+CSS Explanation
+The CSS file styles the elements to make the application visually appealing:
+Body: Sets the background gradient and the font.
+Container: Styles the container, giving it a white background, padding, and a box-shadow for a subtle 3D effect.
+Form: Styles the input fields and the add button.
+Task List: Styles the task items, including completed tasks with a line-through decoration.
+
+JavaScript Explanation
+The JavaScript file contains the logic for adding, editing, deleting, and updating tasks, including the priority feature.
+createTask: Adds a new task with the specified text, date, and priority.
+toggleTask: Toggles the completion status of a task.
+editTask: Allows editing the task text, date, and priority.
+removeTask: Deletes a task after confirmation.
+updateCounters: Updates the counters for completed and uncompleted tasks.
