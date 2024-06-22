@@ -1,0 +1,97 @@
+const taskInput = document.getElementById("task-input");
+const dateInput = document.getElementById("date-input");
+const priorityInput = document.getElementById("priority-input");
+const taskList = document.getElementById("task-list");
+
+function createTask() {
+    const taskText = taskInput.value.trim();
+    const taskDate = dateInput.value;
+    const taskPriority = priorityInput.value;
+    if (!taskText) {
+        alert("Please write down a task");
+        return;
+    }
+    if (!taskDate) {
+        alert("Please select a date");
+        return;
+    }
+
+    const li = document.createElement("li");
+
+    li.innerHTML = `
+        <label>
+            <input type="checkbox" onchange="toggleTask(this)">
+            <span>${taskText}</span> <span class="task-date">(${taskDate})</span> <span class="task-priority">[Priority: ${taskPriority}]</span>
+        </label>
+        <span class="edit-btn" onclick="editTask(this)">Edit</span>
+        <span class="delete-btn" onclick="removeTask(this)">Delete</span>
+    `;
+
+    taskList.appendChild(li);
+    taskInput.value = "";
+    dateInput.value = "";
+    priorityInput.value = "Medium";
+    updateCounters();
+}
+
+function toggleTask(checkbox) {
+    const taskItem = checkbox.parentElement.parentElement;
+    taskItem.classList.toggle("completed");
+    updateCounters();
+}
+
+function editTask(editButton) {
+    const taskItem = editButton.parentElement;
+    const taskLabel = taskItem.querySelector("label span:first-of-type");
+    const taskDate = taskItem.querySelector(".task-date");
+    const taskPriority = taskItem.querySelector(".task-priority");
+    const newTask = prompt("Edit task:", taskLabel.textContent);
+    const newDate = prompt("Edit date:", taskDate.textContent.replace(/[()]/g, ''));
+    const newPriority = prompt("Edit priority (High, Medium, Low):", taskPriority.textContent.replace(/[Priority: \[\]]/g, ''));
+
+    if (newTask !== null && newTask.trim() !== "") {
+        taskLabel.textContent = newTask.trim();
+    }
+
+    if (newDate !== null && newDate.trim() !== "") {
+        taskDate.textContent = `(${newDate.trim()})`;
+    }
+
+    if (newPriority !== null && newPriority.trim() !== "") {
+        taskPriority.textContent = `[Priority: ${newPriority.trim()}]`;
+    }
+
+    const checkbox = taskItem.querySelector("input");
+    taskItem.classList.remove("completed");
+    checkbox.checked = false;
+    updateCounters();
+}
+
+function removeTask(deleteButton) {
+    if (confirm("Are you sure you want to delete this task?")) {
+        const taskItem = deleteButton.parentElement;
+        taskItem.remove();
+        updateCounters();
+    }
+}
+
+function updateCounters() {
+    const completedCounter = document.getElementById("completed-counter");
+    const uncompletedCounter = document.getElementById("uncompleted-counter");
+    const tasks = document.querySelectorAll("#task-list li");
+    let completedCount = 0;
+    let uncompletedCount = 0;
+
+    tasks.forEach(task => {
+        if (task.classList.contains("completed")) {
+            completedCount++;
+        } else {
+            uncompletedCount++;
+        }
+    });
+
+    completedCounter.textContent = completedCount;
+    uncompletedCounter.textContent = uncompletedCount;
+}
+
+document.addEventListener("DOMContentLoaded", updateCounters);
