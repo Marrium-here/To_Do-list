@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO List</title>
+    <link rel="stylesheet" href="todolist.css" />
+</head>
+<body>
+    <!-- create a container for the todo list -->
+    <div id="todo-container">
+        <!-- todo list header -->
+        <div id="header">
+            <h1>To Do List</h1>
+        </div>
+
+        <!-- create input box -->
+        <div id="todo-form">
+            <input type="text" class="input-item" name="task_input" id="task-input" placeholder="Add Task" />
+            <input type="date" class="input-item" name="date_input" id="date-input" />
+            <select class="input-item" name="priority_input" id="priority-input">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            <!-- add button -->
+            <button id="add-task-button" onclick="createTask()">Add</button>
+        </div>
+
+        <!-- task list -->
+        <div id="task-list-container">
+            <h2>Task List</h2>
+            <ul id="task-list"></ul>
+        </div>
+    </div>
+    
+    <!-- task list counter -->
+    <div class="counter-container">
+        <div id="task-counters">
+            <strong>Completed:</strong> <span id="completed-counter">0</span> | <strong>Uncompleted:</strong> <span id="uncompleted-counter">0</span>
+        </div>
+    </div>
+    <script type="text/javascript" src="todolist.js"></script>
+</body>
+</html>
